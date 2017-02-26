@@ -6,6 +6,9 @@ PADRINO_ROOT = File.expand_path('../..', __FILE__) unless defined?(PADRINO_ROOT)
 require 'bundler/setup'
 Bundler.require(:default, RACK_ENV)
 
+require 'dotenv'
+Dotenv.load ".env.#{Padrino.env}"
+
 ##
 # ## Enable devel logging
 #
@@ -48,6 +51,7 @@ Padrino.dependency_paths.unshift Padrino.root('config/initializers/*.rb')
 # Add your before (RE)load hooks here
 # These hooks are run before any dependencies are required.
 #
+
 Padrino.before_load do
 end
 

@@ -35,3 +35,8 @@ gem 'padrino', '0.13.3.3'
 # %w(core support gen helpers cache mailer admin).each do |g|
 #   gem 'padrino-' + g, '0.13.3.3'
 # end
+
+gem 'omniauth'
+gem 'omniauth-twitter'
+
+gem 'dotenv'

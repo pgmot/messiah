@@ -3,7 +3,25 @@ module Messiah
     use ConnectionPoolManagement
     register Padrino::Mailer
     register Padrino::Helpers
+    register Padrino::Admin::AccessControl
     enable :sessions
+
+    use OmniAuth::Builder do
+      provider :twitter,  ENV["twitter_consumer_key"], ENV["twitter_consumer_secret"]
+    end
+
+    access_control.roles_for :any do |role|
+      role.protect "/profile"
+    end
+
+    # now we add a role for users
+    access_control.roles_for :users do |role|
+      role.allow "/profile"
+    end
+
+    get '/' do
+      erb :index
+    end
 
     ##
     # Caching support.
@@ -13,7 +31,7 @@ module Messiah
     #
     # You can customize caching store engines:
     #
-    # set :cache, Padrino::Cache.new(:LRUHash) # Keeps cached values in memory
+    set :cache, Padrino::Cache.new(:LRUHash) # Keeps cached values in memory
     # set :cache, Padrino::Cache.new(:Memcached) # Uses default server at localhost
     # set :cache, Padrino::Cache.new(:Memcached, :server => '127.0.0.1:11211', :exception_retry_limit => 1)
     # set :cache, Padrino::Cache.new(:Memcached, :backend => memcached_or_dalli_instance)
