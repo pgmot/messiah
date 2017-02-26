@@ -19,6 +19,7 @@ gem 'rake'
 # Component requirements
 gem 'erubis', '~> 2.7.0'
 gem 'activerecord', '>= 3.1', :require => 'active_record'
+gem 'activerecord-import'
 gem 'sqlite3'
 
 # Test requirements
@@ -40,3 +41,6 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 
 gem 'dotenv'
+gem 'sidekiq'
+
+gem 'twitter'

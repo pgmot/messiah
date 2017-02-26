@@ -10,17 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 1) do
+ActiveRecord::Schema.define(version: 2) do
+
+  create_table "account_relations", force: :cascade do |t|
+    t.string   "uid"
+    t.string   "follow_uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "accounts", force: :cascade do |t|
     t.string   "name"
     t.string   "screen_name"
     t.string   "icon_url"
+    t.string   "access_token"
+    t.string   "access_token_secret"
     t.string   "role"
     t.string   "uid"
     t.string   "provider"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
 end

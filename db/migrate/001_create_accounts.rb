@@ -4,6 +4,8 @@ class CreateAccounts < ActiveRecord::Migration
       t.string :name
       t.string :screen_name
       t.string :icon_url
+      t.string :access_token
+      t.string :access_token_secret
 
       t.string :role
 

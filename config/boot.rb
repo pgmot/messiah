@@ -53,6 +53,7 @@ Padrino.dependency_paths.unshift Padrino.root('config/initializers/*.rb')
 #
 
 Padrino.before_load do
+  Padrino.require_dependencies Dir[Padrino.root('workers', '**', '*.rb')]
 end
 
 ##
