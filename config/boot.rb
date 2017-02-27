@@ -9,6 +9,9 @@ Bundler.require(:default, RACK_ENV)
 require 'dotenv'
 Dotenv.load ".env.#{Padrino.env}"
 
+require 'sidekiq/testing/inline' if RACK_ENV == 'development'
+Sidekiq.logger = Padrino.logger
+
 ##
 # ## Enable devel logging
 #
