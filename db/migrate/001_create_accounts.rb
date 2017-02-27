@@ -11,6 +11,9 @@ class CreateAccounts < ActiveRecord::Migration
 
       t.string :uid
       t.string :provider
+
+      t.float :living_latitude
+      t.float :living_longitude
       t.timestamps null: false
     end
   end

@@ -12,6 +12,9 @@ class Account < ActiveRecord::Base
 
       account.access_token = auth["credentials"]["token"]
       account.access_token_secret = auth["credentials"]["secret"]
+
+      account.living_latitude = 35.689634
+      account.living_longitude = 139.692101
     end
   end
 end

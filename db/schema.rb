@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2) do
     t.string   "role"
     t.string   "uid"
     t.string   "provider"
+    t.float    "living_latitude"
+    t.float    "living_longitude"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
   end

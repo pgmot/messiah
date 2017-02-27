@@ -1,0 +1,25 @@
+<h1>救世主(メシア)プロフィール 編集</h1>
+<% form_tag '/profile/edit', :method => 'post' do %>
+  <p>緯度: <span id="latitude"><%= @user[:living_latitude].to_f %></span></p>
+  <p>経度: <span id="longitude"><%= @user[:living_longitude].to_f %></span></p>
+  <div id="map_canvas" style="width:500px; height:300px"></div>
+	<input type="submit" method="POST" value="送信" class="btn btn-primary">
+  <a href="/profile/me" class="btn btn-default">キャンセル</a>
+  <%= hidden_field_tag :latitude, :value => @user[:living_latitude].to_f, :id => "lat" %>
+  <%= hidden_field_tag :longitude, :value => @user[:living_longitude].to_f, :id => "lng" %>
+<% end %>
+
+<script>
+var map_marker = set_map(<%=@user[:living_latitude].to_f%>, <%=@user[:living_longitude].to_f%>);
+google.maps.event.addListener(map_marker.map, 'click', function(event){
+  var lat = event.latLng.lat();
+  var lng = event.latLng.lng();
+
+  $("#latitude")[0].innerHTML = lat;
+  $("#longitude")[0].innerHTML = lng;
+  $("#lat")[0].value = lat;
+  $("#lng")[0].value = lng;
+
+  map_marker.marker.setPosition(event.latLng);
+});
+</script>

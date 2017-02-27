@@ -8,6 +8,26 @@
     <style type="text/css">
       body { padding-top: 80px; }
     </style>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=<%= ENV["google_maps_api_key"] %>"></script>
+    <script type="text/javascript">
+    function set_map(living_latitude, living_longitude) {
+        var mapdiv = document.getElementById('map_canvas');
+        var myOptions = {
+            zoom: 14,
+            center: new google.maps.LatLng(living_latitude,living_longitude),
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            scaleControl: true,
+        };
+        var map = new google.maps.Map(mapdiv, myOptions);
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(living_latitude,living_longitude),
+            map: map,
+            title: 'あなたの現在地'
+        });
+
+        return {map: map, marker: marker};
+    }
+    </script>
   </head>
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top">

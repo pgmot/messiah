@@ -2,9 +2,15 @@
 <div class="row">
     <div class="col-md-6">
         <h2>
-          <img src="<%= @user.icon_url %>"/>
-          <%= @user[:name] %> @<%= @user[:screen_name]%>
+          <img src="<%= @user.icon_url.to_s %>"/>
+          <%= @user[:name].to_s %> @<%= @user[:screen_name].to_s %>
         </h2>
     </div>
+    <div class="col-md-6">
+      <%= link_to "ユーザ情報編集", "/profile/edit", {:class => "btn-link pull-right"} %>
+      <p>緯度<%= @user[:living_latitude].to_f%>  経度<%= @user[:living_longitude].to_f%></p>
+      <div id="map_canvas" style="width:500px; height:300px"></div>
+  </div>
 </div>
-<!-- <script>set_map(<%=@user[:living_latitude]%>, <%=@user[:living_longitude]%>) </script> -->
+
+<script>set_map(<%=@user[:living_latitude].to_f%>, <%=@user[:living_longitude].to_f%>)</script>
