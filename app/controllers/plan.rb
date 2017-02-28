@@ -25,7 +25,7 @@ Messiah::App.controllers :plan do
     id = params[:id]
     meshiya = params[:meshiya]
     p = Plan.find_by_id(id)
-    unless p.nil?
+    if p && p.owner?(current_user)
       p.meshiya = meshiya
       p.save
     end
@@ -39,22 +39,18 @@ Messiah::App.controllers :plan do
     redirect '/'
   end
 
-
-#   post '/:id/attend' do
-#     id = params[:id]
-#     plan = Plan.find_by_id(id)
-#     unless plan.nil?
-#       if plan.users.include?(current_user)
-#         UserPlan.find_by(plan_id: plan.id, user_id: current_user.id).destroy
-#       else
-#         up = UserPlan.new
-#         up.plan = plan
-#         up.user = current_user
-#         up.save
-#       end
-#     end
-#     redirect "/plan/#{id}"
-#   end
+  post '/:id/attend' do
+    id = params[:id]
+    plan = Plan.find_by_id(id)
+    unless plan.nil?
+      if plan.attend_accounts.exists?(current_user)
+        plan.attend_accounts.delete(current_user)
+      else
+        plan.attend_accounts << current_user
+      end
+    end
+    redirect "/plan/#{id}"
+  end
 
 #   post '/:id/comment' do
 #     id = params[:id]

@@ -7,7 +7,9 @@
         </h2>
     </div>
     <div class="col-md-6">
+      <% if @user == current_user %>
       <%= link_to "ユーザ情報編集", "/profile/edit", {:class => "btn-link pull-right"} %>
+      <% end %>
       <p>緯度<%= @user[:living_latitude].to_f%>  経度<%= @user[:living_longitude].to_f%></p>
       <div id="map_canvas" style="width:500px; height:300px"></div>
   </div>
