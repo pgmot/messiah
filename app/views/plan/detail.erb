@@ -1,0 +1,53 @@
+<h1>プランの詳細</h1>
+
+<% if @plan.owner?(current_user) %>
+  <% form_tag "/plan/#{@plan.id}/delete", method: "POST" do %>
+    <%= submit_tag "予定を削除する", "/plan/#{@plan.id}/delete", method: "POST", confirm: "本当に削除しますか", class: "btn btn-danger" %>
+  <% end %>
+<% end %>
+
+<div class="row">
+    <div class="col-md-6">
+        「<%= "#{@plan.owner_user.name}(@#{@plan.owner_user.screen_name})" %>」さんは
+        「<%= @plan.start_datetime.strftime('%Y-%m-%d') %>」から「<%= @plan.end_datetime.strftime('%Y-%m-%d') %>」の間に地図の位置に行くそうです
+
+        <h2>参加者一覧</h2>
+        <% @plan.accounts.each do |u| %>
+          <p>
+            <a href="/profile/<%= u.id %>">
+  	        <img src="<%= u.icon_url %>"/>
+            <%= u.name %>(@<%= u.screen_name %>)
+            </a>
+          </p>
+        <% end %>
+
+        <% unless @plan.owner?(current_user) %>
+          <form action="/plan/<%= @plan.id %>/attend" method="POST">
+            <% if @plan.accounts.include?(current_user) %>
+              <input type="submit" value="参加しないことにする"/>
+            <% else %>
+              <input type="submit" value="参加してみることにする"/>
+            <% end %>
+          </form>
+        <% end %>
+
+        <h2>飯屋</h2>
+        <% form_tag "/plan/#{@plan.id}/meshiya", method: "POST" do %>
+          <%= text_field_tag 'meshiya', value: @plan.meshiya %>
+          <input type="submit" method="POST" value="送信" class="btn btn-primary">
+        <% end %>
+
+        <h2>コメント</h2>
+        <form action="/plan/<%= @plan.id  %>/comment" method="POST">
+          <textarea rows="4" cols="50" name="comment"></textarea>
+          <input type="submit" value="コメント"/>
+        </form>
+
+        <hr/>
+
+    </div>
+    <div class="col-md-6">
+        <div id="map_canvas" style="width:500px; height:300px"></div>
+        <script>set_map(<%=@plan.latitude%>, <%=@plan.longitude%>) </script>
+    </div>
+</div>

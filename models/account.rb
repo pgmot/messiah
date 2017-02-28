@@ -1,4 +1,9 @@
 class Account < ActiveRecord::Base
+  has_many :account_plans
+  has_many :attend_plans, :through => :account_plans, :source => :account
+
+  has_many :owner_plans, class_name: "Plan", :foreign_key => :owner_user_id
+
   def self.create_with_omniauth(auth)
     create! do |account|
       account.name        = auth["info"]["name"]

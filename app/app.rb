@@ -3,20 +3,10 @@ module Messiah
     use ConnectionPoolManagement
     register Padrino::Mailer
     register Padrino::Helpers
-    register Padrino::Admin::AccessControl
     enable :sessions
 
     use OmniAuth::Builder do
       provider :twitter,  ENV["twitter_consumer_key"], ENV["twitter_consumer_secret"]
-    end
-
-    access_control.roles_for :any do |role|
-      role.protect "/profile"
-    end
-
-    # now we add a role for users
-    access_control.roles_for :users do |role|
-      role.allow "/profile"
     end
 
     get '/' do

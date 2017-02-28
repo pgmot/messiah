@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2) do
+ActiveRecord::Schema.define(version: 4) do
+
+  create_table "account_plans", force: :cascade do |t|
+    t.integer  "account_id"
+    t.integer  "plan_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "account_relations", force: :cascade do |t|
     t.string   "uid"
@@ -32,6 +39,17 @@ ActiveRecord::Schema.define(version: 2) do
     t.float    "living_longitude"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+  end
+
+  create_table "plans", force: :cascade do |t|
+    t.integer  "owner_user_id"
+    t.datetime "start_datetime"
+    t.datetime "end_datetime"
+    t.text     "meshiya"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
 end

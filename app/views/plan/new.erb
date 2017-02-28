@@ -1,0 +1,29 @@
+<h1>新しい予定を登録して，皆とご飯に行きましょう</h1>
+
+<% form_tag '/plan/new', :method => "POST" do %>
+  <p>予定開始日</p><%= text_field_tag :start_date, {:type => "date", :value => Date.today.strftime('%Y-%m-%d')} %>
+  <p>予定終了日</p><%= text_field_tag :end_date, {:type => "date", :value => Date.today.strftime('%Y-%m-%d')} %>
+	<p>場所</p>
+  <p>緯度: <span id="latitude">35.689634</span></p>
+  <p>経度: <span id="longitude">139.692101</span></p>
+  <div id="map_canvas" style="width:500px; height:300px"></div>
+  <input type="submit" method="POST" value="送信" class="btn btn-primary">
+
+  <%= hidden_field_tag :latitude, :value => 35.689634, :id => "lat" %>
+  <%= hidden_field_tag :longitude, :value => 139.692101, :id => "lng" %>
+<% end %>
+
+<script>
+var map_marker = set_map(35.689634, 139.692101);
+google.maps.event.addListener(map_marker.map, 'click', function(event){
+  var lat = event.latLng.lat();
+  var lng = event.latLng.lng();
+
+  $("#latitude")[0].innerHTML = lat;
+  $("#longitude")[0].innerHTML = lng;
+  $("#lat")[0].value = lat;
+  $("#lng")[0].value = lng;
+
+  map_marker.marker.setPosition(event.latLng);
+});
+</script>

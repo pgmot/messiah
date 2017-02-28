@@ -4,8 +4,8 @@ Messiah::App.controllers :profile do
   end
 
   get '/me' do
-    if current_account
-      @user = current_account
+    if signed_in?
+      @user = current_user
       render '/profile/index'
     else
       redirect '/'
@@ -13,13 +13,12 @@ Messiah::App.controllers :profile do
   end
 
   get '/logout' do
-    set_current_account(nil)
+    sign_out
     redirect '/'
   end
 
   get '/edit' do
-    if current_account
-      @user = current_account
+    if signed_in?
       render '/profile/edit'
     else
       redirect '/'
@@ -27,7 +26,7 @@ Messiah::App.controllers :profile do
   end
 
   post '/edit' do
-    account = current_account
+    account = current_user
     account.living_latitude = params[:latitude].to_f
     account.living_longitude = params[:longitude].to_f
     account.save

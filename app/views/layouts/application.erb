@@ -43,7 +43,7 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <% if signed_in? %>
-              <li><a href="/profile/me"><%= "#{current_account.name}@#{current_account.screen_name}" %>さん</a></li>
+              <li><a href="/profile/me"><%= "#{current_user.name}@#{current_user.screen_name}" %>さん</a></li>
               <li><a href="/profile/logout">ログアウト</a></li>
             <% else %>
               <li><a href="/auth/twitter">Twitterでログイン</a></li>
