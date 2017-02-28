@@ -36,4 +36,21 @@
     </li>
   <% end %>
 </ul>
+
+<h2>友達のプラン一覧</h2>
+<ul>
+  <% current_user.friends.each do |user| %>
+    <% user.owner_plans.each do |plan| %>
+      <li>
+        <a href="/profile/<%= plan.owner_user.id %>">
+          <img src="<%= plan.owner_user.icon_url %>"/>
+        </a>
+        <a href="/plan/<%= plan.id %>">
+          日付: <%= plan.start_datetime.to_s %>
+        </a>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
 <% end %>
