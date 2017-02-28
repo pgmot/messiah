@@ -18,6 +18,8 @@ Messiah::App.controllers :plan do
 
   get '/:id' do
     @plan = Plan.find_by_id(params[:id])
+    redirect '/' unless @plan.owner_user.friend?(current_user)
+
     render '/plan/detail' unless @plan.nil?
   end
 
@@ -40,8 +42,9 @@ Messiah::App.controllers :plan do
   end
 
   post '/:id/attend' do
-    id = params[:id]
-    plan = Plan.find_by_id(id)
+    plan = Plan.find_by_id(params[:id])
+    redirect '/' unless plan.owner_user.friend?(current_user)
+
     unless plan.nil?
       if plan.attend_accounts.exists?(current_user)
         plan.attend_accounts.delete(current_user)
@@ -62,11 +65,5 @@ Messiah::App.controllers :plan do
 #     pc.save
 #     redirect "/plan/#{id}"
 #   end
-#
-#   get '/:id/delete/confirm' do
-#     @id = params[:id]
-#     render '/plan/delete_confirm'
-#   end
-#
 
 end

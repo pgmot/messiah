@@ -22,4 +22,14 @@ class Account < ActiveRecord::Base
       account.living_longitude = 139.692101
     end
   end
+
+  def friend?(user)
+    return false if user.nil?
+
+    user_follow_ids = AccountRelation.where("uid = ?", self.uid).pluck(:follow_uid)
+    account_relation_count = AccountRelation.where("(uid = ? and follow_uid = ?) or (uid = ? and follow_uid = ?)", self.uid, user.uid, user.uid, self.uid).count
+
+    # 相互フォローなら上記条件で2件回答があるはず
+    account_relation_count == 2
+  end
 end

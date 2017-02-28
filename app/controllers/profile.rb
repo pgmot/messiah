@@ -35,6 +35,9 @@ Messiah::App.controllers :profile do
 
   get '/:id' do
     @user = Account.find_by_id(params[:id])
+
+    redirect '/' unless @user.friend?(current_user)
+
     if @user.nil?
         redirect '/'
     else
