@@ -9,6 +9,10 @@ module Messiah
       provider :twitter,  ENV["twitter_consumer_key"], ENV["twitter_consumer_secret"]
     end
 
+    before :except => '/' do
+      redirect '/' unless signed_in?
+    end
+
     get '/' do
       erb :index
     end
