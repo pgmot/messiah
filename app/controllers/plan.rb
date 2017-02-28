@@ -18,8 +18,9 @@ Messiah::App.controllers :plan do
 
   get '/:id' do
     @plan = Plan.find_by_id(params[:id])
-    redirect '/' unless @plan.owner_user.friend?(current_user)
-
+    if !@plan.owner_user.friend?(current_user) && @plan.owner_user != current_user
+      redirect '/'
+    end
     render '/plan/detail' unless @plan.nil?
   end
 
@@ -43,7 +44,9 @@ Messiah::App.controllers :plan do
 
   post '/:id/attend' do
     plan = Plan.find_by_id(params[:id])
-    redirect '/' unless plan.owner_user.friend?(current_user)
+    if plan.owner_user.friend?(current_user) && plan.owner_user != current_user
+      redirect '/'
+    end
 
     unless plan.nil?
       if plan.attend_accounts.exists?(current_user)
