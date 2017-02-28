@@ -12,21 +12,21 @@
 
 ActiveRecord::Schema.define(version: 4) do
 
-  create_table "account_plans", force: :cascade do |t|
+  create_table "account_plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "account_id"
     t.integer  "plan_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "account_relations", force: :cascade do |t|
+  create_table "account_relations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "uid"
     t.string   "follow_uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "accounts", force: :cascade do |t|
+  create_table "accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "name"
     t.string   "screen_name"
     t.string   "icon_url"
@@ -35,21 +35,21 @@ ActiveRecord::Schema.define(version: 4) do
     t.string   "role"
     t.string   "uid"
     t.string   "provider"
-    t.float    "living_latitude"
-    t.float    "living_longitude"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.float    "living_latitude",     limit: 24
+    t.float    "living_longitude",    limit: 24
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
-  create_table "plans", force: :cascade do |t|
+  create_table "plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "owner_user_id"
     t.datetime "start_datetime"
     t.datetime "end_datetime"
-    t.text     "meshiya"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.text     "meshiya",        limit: 65535
+    t.float    "latitude",       limit: 24
+    t.float    "longitude",      limit: 24
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
 end
