@@ -10,7 +10,7 @@ bundle exec padrino rake ar:migrate
 ```
 
 ```
-mkdir -p tmp/pids tmp/sockets
-bundle exec unicorn -c config/unicorn.rb -e production -d
+mkdir -p tmp/pids tmp/sockets log
+bundle exec unicorn -c config/unicorn.rb -E production -D
 kill -9 `cat tmp/pids/unicorn.pid`
 ```
