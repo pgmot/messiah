@@ -35,7 +35,7 @@
         <% form_tag "/plan/#{@plan.id}/meshiya", method: "POST" do %>
           <%= text_field_tag 'meshiya', value: @plan.meshiya %>
           <% if @plan.owner?(current_user) %>
-          <input type="submit" method="POST" value="送信" class="btn btn-primary">
+          <%= submit_tag "送信", :class => "btn btn-primary" %>
           <% end %>
         <% end %>
         <hr/>

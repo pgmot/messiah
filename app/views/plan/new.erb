@@ -7,7 +7,7 @@
   <p>緯度: <span id="latitude">35.689634</span></p>
   <p>経度: <span id="longitude">139.692101</span></p>
   <div id="map_canvas" style="width:500px; height:300px"></div>
-  <input type="submit" method="POST" value="送信" class="btn btn-primary">
+  <%= submit_tag "送信", :class => "btn btn-primary" %>
 
   <%= hidden_field_tag :latitude, :value => 35.689634, :id => "lat" %>
   <%= hidden_field_tag :longitude, :value => 139.692101, :id => "lng" %>
