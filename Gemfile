@@ -20,8 +20,8 @@ gem 'rake'
 gem 'erubis', '~> 2.7.0'
 gem 'activerecord', '>= 3.1', :require => 'active_record'
 gem 'activerecord-import'
-gem 'sqlite3', :group => 'development'
-gem 'mysql2', :group => 'production'
+gem 'mysql2', group: :production
+gem 'sqlite3', group: :development
 
 # Test requirements
 gem 'rspec', :group => 'test'
