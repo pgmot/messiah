@@ -4,6 +4,7 @@ class Account < ActiveRecord::Base
 
   has_many :owner_plans, class_name: 'Plan', foreign_key: :owner_user_id
 
+  # rubocop: disable Metrics/AbcSize, Style/MethodLength
   def self.create_with_omniauth(auth)
     create! do |account|
       account.name        = auth['info']['name']
@@ -22,6 +23,7 @@ class Account < ActiveRecord::Base
       account.living_longitude = 139.692101
     end
   end
+  # rubocop: enable Metrics/AbcSize, Style/MethodLength
 
   def friend?(user)
     return false if user.nil?
