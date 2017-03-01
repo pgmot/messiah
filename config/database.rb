@@ -14,14 +14,8 @@
 #   }
 #
 ActiveRecord::Base.configurations[:development] = {
-  :adapter => 'mysql2',
-  :encoding => 'utf8mb4',
-  :charset => 'utf8mb4',
-  :collation => 'utf8mb4_general_ci',
-  :database => 'messiah_development',
-  :username => 'root',
-  :password => '',
-  :host => 'localhost'
+  :adapter => 'sqlite3',
+  :database => Padrino.root('db', 'messiah_development.db')
 }
 
 ActiveRecord::Base.configurations[:production] = {
