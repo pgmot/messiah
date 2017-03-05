@@ -17,6 +17,10 @@ module Messiah
       erb :index
     end
 
+    get '/howto' do
+      erb :howto
+    end
+
     ##
     # Caching support.
     #
