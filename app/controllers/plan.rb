@@ -58,15 +58,14 @@ Messiah::App.controllers :plan do
     redirect "/plan/#{plan.id}"
   end
 
-#   post '/:id/comment' do
-#     id = params[:id]
-#     comment = params[:comment]
-#     pc = PlanComment.new
-#     pc.plan_id = id
-#     pc.user = current_user
-#     pc.comment = comment
-#     pc.save
-#     redirect "/plan/#{id}"
-#   end
-
+  #   post '/:id/comment' do
+  #     id = params[:id]
+  #     comment = params[:comment]
+  #     pc = PlanComment.new
+  #     pc.plan_id = id
+  #     pc.user = current_user
+  #     pc.comment = comment
+  #     pc.save
+  #     redirect "/plan/#{id}"
+  #   end
 end

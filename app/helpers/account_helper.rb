@@ -1,8 +1,6 @@
 
 Messiah::App.helpers do
-  def current_user=(user)
-    @current_user = user
-  end
+  attr_writer :current_user
 
   def current_user
     return nil unless signed_in?

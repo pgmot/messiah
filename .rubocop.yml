@@ -1,4 +1,18 @@
 AllCops:
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
   Exclude:
     - 'db/**/*'
     - 'config/**/*'
+    - 'script/**/*'
+    - !ruby/regexp /old_and_unused\.rb$/
+
+Metrics/LineLength:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+AsciiComments:
+  Enabled: false

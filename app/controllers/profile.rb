@@ -39,7 +39,7 @@ Messiah::App.controllers :profile do
     redirect '/' unless @user.friend?(current_user)
 
     if @user.nil?
-        redirect '/'
+      redirect '/'
     else
       render '/profile/index'
     end

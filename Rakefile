@@ -5,4 +5,4 @@ PadrinoTasks.use(:database)
 PadrinoTasks.use(:activerecord)
 PadrinoTasks.init
 
-task :default => :test
+task default: :test

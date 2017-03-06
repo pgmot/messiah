@@ -46,3 +46,5 @@ gem 'sidekiq'
 
 gem 'twitter'
 gem 'unicorn'
+
+gem 'rubocop', group: 'development'
