@@ -9,7 +9,7 @@ module Messiah
       provider :twitter,  ENV["twitter_consumer_key"], ENV["twitter_consumer_secret"]
     end
 
-    before :except => ['/', '/auth/twitter/callback'] do
+    before :except => ['/', '/auth/twitter/callback', '/howto'] do
       redirect '/' unless signed_in?
     end
 
